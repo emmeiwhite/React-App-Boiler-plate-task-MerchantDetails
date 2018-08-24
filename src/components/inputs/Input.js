@@ -2,11 +2,13 @@ import React, { Component } from "react";
 
 class Input extends Component {
 
+    onChangeInput = (e) => {
+        this.props.handleOnChange(e.target.value);
+    }
+
     render() {
       return (
-          <div>
-              <input type="text" name={this.props.billingAddress}/>
-         </div>
+              <input type="text" name={this.props.billingAddress} onChange={this.onChangeInput} />
       );
     }
 }

@@ -8,20 +8,52 @@ import CardNumber from "./../../../components/inputs/CardNumber";
 import Month from "./../../../components/inputs/Month";
 import Year from "./../../../components/inputs/Year";
 import CardHolderName from "./../../../components/inputs/CardHolderName";
+import Asterix from "./../../../components/inputs/Asterix";
+import CVV from "./../../../components/inputs/CVV";
+import City from "./../../../components/inputs/City";
+import State from "./../../../components/inputs/State";
+import Zip from "./../../../components/inputs/Zip";
+
 
 import './../css/AddMerchantDetails.css';
 
 class AddMerchantDetails extends Component {
     // Merchant State Management:
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
-            cardHolderName:"name",
-            cardNumber:"cardNumber",
-            billingAddress:"address", // Shall I keep other Component
+            cardHolderName:"",
+            cardNumber:"",
+            billingAddressOne:"", 
+            billingAddressTwo:"",
+            years:[2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028],
+            months:[1,2,3,4,5,6,7,8,9,10,11,12],
+            CVV:"",
+            cities:["xsd","hghj","kajh","kajh","kasjd"],
+            states:["oioi","oidu","xsd","hghj","kajh","kajh","kasjd"],
+            zip:""
         }
     }
+
+    onChangeAddressOne = (address) => {
+        this.setState({
+            billingAddressOne: address
+        });
+    }
+
+    onChangeAddressTwo = (address) => {
+        this.setState({
+            billingAddressTwo: address
+        });
+    }
    
+    //  CardHolder Name
+    onChangeCardeHolderName =(holderName)=>{
+        this.setState({
+            cardHolderName:holderName
+        })
+    }
+
 
     render() {
        
@@ -45,28 +77,28 @@ class AddMerchantDetails extends Component {
                     <form action="">
                         <div className="col-md-6">
                             <h4>Enter Debit Card Details</h4>
-                            <span className="redAsterix">&#42;</span>Card Holder Name:<CardHolderName cardHolderName={this.state.cardHolderName}/>
-                            <span className="redAsterix">&#42;</span>Card Number<CardNumber cardNumber={this.state.cardNumber}/>
-                            <span className="redAsterix">&#42;</span>Expiration Date:<Month/> 
-                            <span className="redAsterix">&#42;</span>CVV<Input/>
+                            <Asterix/>Card Holder Name: <CardHolderName cardHolderName={this.state.cardHolderName} handleOnChange={this.onChangeCardeHolderName}/><br/>
+                            <Asterix/>Card Number: <CardNumber cardNumber={this.state.cardNumber}/><br/>
+                            <Asterix/>Expiration Date: <Month months={this.state.months}/><span className="redColor">/</span>   
+                            <Year years={this.state.years}/><br/>
+                            <Asterix/>CVV <CVV cardNumber={this.state.CVV_Number}/>
                         </div>
                         <div className="col-md-6">
-                            <input type="checkbox" />
-                             <h4>Enter Debit Card Details</h4>
-                             <span className="redAsterix">&#42;</span>Billing Address 1<Input billingAddress={this.state.billingAddress}/>
-                             <span className="redAsterix">&#42;</span>Billing Address 2<Input billingAddress={this.state.billingAddress}/>
-                             <span className="redAsterix">&#42;</span>City<Input/>
-                             <span className="redAsterix">&#42;</span>State<Input/>
-                             <span className="redAsterix">&#42;</span>Zip<Input/>
-                             <span className="redAsterix">&#42;</span><Button buttonName="Submit"/>
+                             <input type="checkbox" name="checkIt"/>
+                             <strong>Use Business Address:</strong><br/>
+                             <Asterix/>Billing Address 1: <Input billingAddress={this.state.billingAddressOne} handleOnChange={this.onChangeAddressOne}/><br/>
+                              Billing Address 2: <Input billingAddress={this.state.billingAddressTwo} handleOnChange={this.onChangeAddressTwo} /><br/>
+                             <Asterix/>City: <City city={this.state.cities}/><br/>
+                             <Asterix/>State: <State state={this.state.states}/>
+                             <Asterix/>Zip:<Zip zip={this.state.zip}/><br/>
+                             <Button buttonName="Submit"/>
 
                         </div>
                     </form>
                 </div>
             </div>
 
-            
-{/*              
+        {/*              
             <div>
                     <div className="row">
                         <div className="col-xs-12">
@@ -104,6 +136,8 @@ class AddMerchantDetails extends Component {
 
 
             
+            
+
         </div>       
       );
     }

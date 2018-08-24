@@ -1,3 +1,20 @@
-.redAsterix{
+.redColor{
     color:#ff0000;
+}
+.inlineBlock{
+    display:inline;
+}
+
+/* For CardHolderName Component */
+.cardHolderName{
+    display: inline;
+}
+
+.PopUp{
+    height:50px;
+    box-sizing:border-box;
+    padding:10px;
+    border-radius:10px;
+    border:2px solid red;
+    color:red;
 }

@@ -4,9 +4,7 @@ class CardNumber extends Component {
 
     render() {
       return (
-          <div>
-              <input type="text" name={this.props.cardNumber} placeholder="* CARD HOLDER" pattern="[0-9]+" required maxlength="16"/>
-         </div>
+              <input type="text" name="cardNumber" placeholder="* CARD HOLDER" pattern="[0-9]+" required maxLength="16"/>
       );
     }
 }

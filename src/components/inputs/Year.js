@@ -3,15 +3,22 @@ import React, { Component } from "react";
 class Year extends Component {
 
     render() {
+        
       return (
-          <div>
-              <select>
-                  <option></option>
+         
+              <select name="expireYear" required>
+              {this.props.years.map((year,index)=>{
+                  console.log(year);
+                 return <option value={year} key={index}>{year}</option>
+              })}
+              
               </select>
-         </div>
+            
+        
       );
     }
 }
 
 
 export default Year;
+
