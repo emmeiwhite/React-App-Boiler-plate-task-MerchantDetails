@@ -8,7 +8,7 @@ class City extends Component {
       return (     
               <select name="state" required>
                 {this.props.state.map((state,index)=>{
-                    console.log(state);
+                    // console.log(state);
                     return <option value={state} key={index}>{state}</option>
                 })}
               </select>          

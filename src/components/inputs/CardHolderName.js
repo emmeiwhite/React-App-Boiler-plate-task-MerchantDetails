@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 
 class CardHolderName extends Component {
- 
+  constructor(props){
+    super(props);
+    this.state = {
+        popUp:false
+      }
+    }
+
   onChangeTextInput= (event)=>{
     let nameTyped = event.target.value;
     let pattChar = /[a-zA-Z]/g; 
@@ -11,11 +17,9 @@ class CardHolderName extends Component {
       this.props.handleOnChange(nameTyped);
     }else{  
       console.log("Pattern Didn't Match !!!");
-       this.popUp=(
-        <div clasName="PopUp">
-          <p>Please Provide Characters [a-z or A-Z] for CardHolderName</p>
-        </div>
-      );
+      let doesPopUp = this.state.popUp;
+      this.setState({
+       popUp:true }) 
       
     }
     
@@ -23,7 +27,13 @@ class CardHolderName extends Component {
     render() {
       return (
         <div className="cardHolderName">
-              <input type="text" name={this.props.cardHolderName} required onChange={this.onChangeTextInput}/>       
+              <input type="text" name={this.props.cardHolderName} required onChange={this.onChangeTextInput}/>      
+               { this.state.popUp? 
+                <div clasName="PopUp">
+                 <p>Please Provide Characters [a-z or A-Z] for CardHolderName</p>
+               </div>
+               :null     
+             }
         </div>
       );
     }

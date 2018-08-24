@@ -8,7 +8,7 @@ class Year extends Component {
          
               <select name="expireYear" required>
               {this.props.years.map((year,index)=>{
-                  console.log(year);
+                //   console.log(year);
                  return <option value={year} key={index}>{year}</option>
               })}
               

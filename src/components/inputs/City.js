@@ -8,7 +8,7 @@ class City extends Component {
       return (     
               <select name="city" required>
                 {this.props.city.map((city,index)=>{
-                    console.log(city);
+                    // console.log(city);
                     return <option value={city} key={index}>{city}</option>
                 })}
               </select>          

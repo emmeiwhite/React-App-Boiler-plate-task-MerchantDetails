@@ -7,7 +7,7 @@ class Month extends Component {
       return (     
               <select name="expireMonth">
                 {this.props.months.map((month,index)=>{
-                    console.log(month);
+                    // console.log(month);
                     return <option value={month} key={index}>{month}</option>
                 })}
               </select>          
