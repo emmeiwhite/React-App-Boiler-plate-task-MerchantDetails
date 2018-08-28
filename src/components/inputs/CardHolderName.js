@@ -1,39 +1,39 @@
 import React, { Component } from "react";
 
 class CardHolderName extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-        popUp:false
-      }
-    }
-
-  onChangeTextInput= (event)=>{
-    let nameTyped = event.target.value;
-    let pattChar = /[a-zA-Z]/g; 
+  
+  onTextInput(event){
     
-    if(nameTyped.match(pattChar)){
-      console.log("Pattern Matched");
-      this.props.handleOnChange(nameTyped);
-    }else{  
-      console.log("Pattern Didn't Match !!!");
-      let doesPopUp = this.state.popUp;
-      this.setState({
-       popUp:true }) 
+    const answer = document.querySelector( "[id=cardHolderName]" );
+    answer.addEventListener( "input", ( event ) => {
+     if ( answer.validity.patternMismatch ) {
+      console.log("User Provided User Details");
+       answer.setCustomValidity("Name field cannot be empty");
+     } else {
+      answer.setCustomValidity( "" );
+     }
+    });
       
-    }
+  }
+  
+  onInvalidText(){
+    console.log("OnInvalidText also getting invoked");
+    const answer = document.querySelector( "[id=cardHolderName]" );
+    answer.addEventListener( "input", ( event ) => {
+      if (answer.validity.patternMismatch ) {
+        answer.setCustomValidity("Name cannot be EMPTY and Name cannot contain Speacial Characters and Numbers");
+      } else {
+       answer.setCustomValidity( "" );
+      }
+     });
     
   }
+
+
     render() {
       return (
         <div className="cardHolderName">
-              <input type="text" name={this.props.cardHolderName} required onChange={this.onChangeTextInput}/>      
-               { this.state.popUp? 
-                <div clasName="PopUp">
-                 <p>Please Provide Characters [a-z or A-Z] for CardHolderName</p>
-               </div>
-               :null     
-             }
+              <input type="text" name={this.props.cardHolderName}  id="cardHolderName" required onInvalid={this.onInvalidText.bind(this)} onInput={this.onTextInput.bind(this)} pattern="[a-zA-Z]+" />      
         </div>
       );
     }
@@ -41,3 +41,5 @@ class CardHolderName extends Component {
 
 
 export default CardHolderName;
+
+// onInput={this.onTextInput.bind(this)}
